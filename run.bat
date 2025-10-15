@@ -1,3 +1,3 @@
 git add .
-git commit -m "Mudanças no README"
+git commit -m "Mudancas no README"
 git push
