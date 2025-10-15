@@ -1,3 +1,3 @@
 git add .
-git commit -m "criei o README e coloquei o conceitual"
+git commit -m "Mudanças no README"
 git push
