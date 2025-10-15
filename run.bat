@@ -1,3 +1,3 @@
 git add .
-git commit -m "deletei a interface padrao do react"
+git commit -m "criei o README e coloquei o conceitual"
 git push
