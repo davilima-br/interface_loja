@@ -1,3 +1,3 @@
 git add .
-git commit -m "Mudancas no README 3"
+git commit -m "Instalamos o tailwind e colocamos a pagina 1"
 git push
