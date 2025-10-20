@@ -1,4 +1,4 @@
-#Comandos VSCode:
+# Comandos VSCode:
 
 ```
 npm i
@@ -6,7 +6,7 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 npm run dev 
 ```
 
-#Comando GitHub:
+# Comando GitHub:
 Para baixar o repositorio no seu pc:
 `git clone https://github.com/davilima-br/interface_loja`
 
