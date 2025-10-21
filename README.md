@@ -15,4 +15,6 @@ Para baixar as mudanças feitas pelos outros:
 `git pull`
 
 Para mandar as mudanças que você fez para o GitHub:
-rodar o "run.bat" e colocar nas aspas oq você fez de mudança
+rodar o "run.bat" no terminal 
+`./run.bat` 
+e colocar nas aspas do commit oq você fez de mudança ` git commit -m "alteração"`
