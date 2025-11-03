@@ -202,7 +202,7 @@ nav .get-pro {
   bottom: 10px;
   left: 20px;
   border: 1.5px solid white;
-  background-color: rgba(145, 1, 1, 0.521);
+  background-color: #7a1515;
   color: white;
   padding: 8px 16px;
   border-radius: 30px;
@@ -259,8 +259,8 @@ nav .get-pro {
 
 .GetinNow {
   border: 1.5px solid white;
-  background-color: rgba(145, 1, 1, 0.521);
-  color: white;
+  background-color: #7a1515;
+  color: rgb(255, 255, 255);
   /* padding: 8px 16px; */
   border-radius: 30px;
   font-family: 'Roboto', sans-serif;
@@ -271,7 +271,9 @@ nav .get-pro {
   transition: background-color 0.3s ease;
   position: fixed;
   bottom: 5%;
-  left: 90%;
+  left: 85%;
+  height: 5%;
+  width: 10%;
 }
 .GetinNow:hover {
   background-color: rgba(117, 0, 0, 0.603);

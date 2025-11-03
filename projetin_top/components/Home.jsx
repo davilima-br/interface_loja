@@ -1,4 +1,5 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto&display=swap" rel="stylesheet" />
+ import {  ShoppingCart} from 'lucide-react';
 
 export default function Home() {
     return (
@@ -50,7 +51,7 @@ export default function Home() {
 
             <button className="GetinNow">
                 <h2>
-                    <a href="#" aria-label="Cart">&#128722;</a> Get in Now
+                    <a href=""><ShoppingCart/> Get in Now </a> 
                 </h2>
             </button>
         </>

@@ -1,3 +1,3 @@
 git add .
-git commit -m "usei .md no README e estilizei o texto2"
+git commit -m "terminamos a pag 1 e comecamos a 2"
 git push
