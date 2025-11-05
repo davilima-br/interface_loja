@@ -15,7 +15,7 @@ export default function Home() {
                 </div>
 
                 <div className="banner-img">
-                    <img src="https://cartier.vtexassets.com/assets/vtex.file-manager-graphql/images/407ab5e1-1289-4f3c-bd57-71fdc121a861___58237557d2ae1d616cb373d499be3a0a.jpg"
+                    <img src="https://cartier.vtexassets.com/assets/vtex.file-manager-graphql/images/853f52ba-5091-472b-95c4-523f34e31bc7___46952e9ae7171ac5d98da4656765fce5.jpg"
                         alt="Classic Cotton T-Shirt" />
                 </div>
             </section>

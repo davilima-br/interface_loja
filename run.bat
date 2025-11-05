@@ -1,3 +1,3 @@
 git add .
-git commit -m "Poucas mudancas no SQL e no app.js"
+git commit -m "ajeitamos a pagina 01"
 git push

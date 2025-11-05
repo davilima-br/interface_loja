@@ -152,8 +152,8 @@ nav .get-pro {
 }
 
 .banner img {
-  width: 500px;
-  height: auto;
+  width: 100%;
+  height: 600;
   object-fit: cover;
   border-radius: 6px;
 }
@@ -254,30 +254,42 @@ nav .get-pro {
 }
 
 .btn-light:hover {
-  background-color: #f2f2f2;
+  background-color: #ff00006e;
 }
 
 /* Get in Now */
 
 .GetinNow {
+  display: flex;
+  align-items: center; /* Alinhar verticalmente os itens */
+  justify-content: center; /* Alinhar horizontalmente os itens */
   border: 1.5px solid white;
   background-color: #7a1515;
   color: rgb(255, 255, 255);
-  /* padding: 8px 16px; */
   border-radius: 30px;
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 1rem;
   backdrop-filter: blur(10px);
   cursor: pointer;
   transition: background-color 0.3s ease;
   position: fixed;
   bottom: 5%;
   left: 85%;
-  height: 5%;
-  width: 10%;
+  min-height: 40px;
+  min-width: 150px;
+  padding: 8px 16px;
 }
+
+.GetinNow a {
+  display: flex;
+  align-items: center; /* Garante que o ícone e o texto fiquem alinhados verticalmente */
+  gap: 8px; /* Espaçamento entre o ícone e o texto */
+  color: white; /* Garante que a cor do texto seja branca */
+  text-decoration: none; /* Remove o sublinhado do link */
+}
+
 .GetinNow:hover {
-  background-color: rgba(117, 0, 0, 0.603);
+  background-color: rgba(165, 0, 0, 0.856);
 }
 
