@@ -1,31 +1,38 @@
-import db from './db.js' 
-import express, { urlencoded, json } from 'express' 
-const app = express() 
+import db from './db.js'
+import express, { urlencoded, json } from 'express'
+const app = express()
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors())
 
-const server = app.listen(3000, () => { 
- console.log('Conectando com servidor...') 
-}) 
+const server = app.listen(3000, () => {
+    console.log('Conectando com servidor...')
+})
 
 app.get()
 
-app.post()
+app.post('/products', async (req, res) => {
+    try {
+        const {name, descripton, price, category, image_url} = req.body
+        // imcompleto
+    } catch (err) {
+        console.log(`Erro ao criar produto: ${err}`)
+    }
+})
 
 app.put()
 
 app.delete()
 
 
-const shutdown = async () => { 
- console.log('\nEncerrando servidor...') 
- server.close() 
- await end() 
- console.log('Conexões encerradas com sucesso.')
- process.exit(0) 
-} 
+const shutdown = async () => {
+    console.log('\nEncerrando servidor...')
+    server.close()
+    await end()
+    console.log('Conexões encerradas com sucesso.')
+    process.exit(0)
+}
 
 
 
@@ -62,5 +69,5 @@ const shutdown = async () => {
 //    );
 
 
-process.on('SIGINT', shutdown) 
+process.on('SIGINT', shutdown)
 process.on('SIGTERM', shutdown)
