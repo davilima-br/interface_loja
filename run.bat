@@ -1,3 +1,3 @@
 git add .
-git commit -m "Criei o SQL e começei a usar express"
-git push
+git commit -m "Criei o SQL e comecei a usar express"
+git pull
