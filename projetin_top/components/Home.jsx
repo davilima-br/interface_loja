@@ -15,26 +15,26 @@ export default function Home() {
                 </div>
 
                 <div className="banner-img">
-                    <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=500&q=80"
+                    <img src="https://cartier.vtexassets.com/assets/vtex.file-manager-graphql/images/407ab5e1-1289-4f3c-bd57-71fdc121a861___58237557d2ae1d616cb373d499be3a0a.jpg"
                         alt="Classic Cotton T-Shirt" />
                 </div>
             </section>
 
             <section className="container collections">
                 <div className="collection-item">
-                    <img src="https://www.estilomarciabrito.com.br/wp-content/uploads/2023/04/street-style.jpg.webp"
+                    <img src="https://cartier.vtexassets.com/assets/vtex.file-manager-graphql/images/54f1579e-2547-46e4-9878-ead90265a6c3___df80da292e00fab30a38764111d10dce.jpg"
                         alt="Modern Collection" />
                     <div className="collection-text">Modern Collection</div>
                     <button className="collection-btn">Shop Now →</button>
                 </div>
                 <div className="collection-item">
-                    <img src="https://eltonsantana.com.br/wp-content/uploads/2020/08/Dicas-de-Moda-Masculina-Jovem.jpg"
+                    <img src="https://cartier.vtexassets.com/assets/vtex.file-manager-graphql/images/233f42ff-0737-482c-9ab2-82b17df68a9f___dbd7cd3b538b75953c98b2d155be7a75.jpg"
                         alt="Classic Collection" />
                     <div className="collection-text">Classic Collection</div>
                     <button className="collection-btn">Shop Now →</button>
                 </div>
                 <div className="collection-item">
-                    <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80"
+                    <img src="https://cartier.vtexassets.com/assets/vtex.file-manager-graphql/images/5cb8f7c5-59b9-421c-92b4-581fb4fa87b9___7be823840150a7c8e64fb1f4e89264e8.jpg"
                         alt="New Collection" />
                     <div className="collection-text">New Collection</div>
                     <button className="collection-btn">Shop Now →</button>

@@ -95,7 +95,7 @@ nav .get-pro {
 
 .banner-img {
   flex: 1 1 300px;
-  max-width: 500px;
+  max-width: 800px;
   position: relative;
   z-index: 1;
   /* fica abaixo da .banner-text */
@@ -280,3 +280,4 @@ nav .get-pro {
 .GetinNow:hover {
   background-color: rgba(117, 0, 0, 0.603);
 }
+
