@@ -1,9 +1,9 @@
-import Shop from '@/components/Shop'
+import Home from '@/components/Home'
 
 export default function caminho() {
   return (
     <>
-      <Shop/>
+      <Home/>
     </>
   );
 }
