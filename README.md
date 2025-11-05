@@ -1,20 +1,29 @@
-# Comandos VSCode:
+# 1. Rode no VSCode:
 
 ```
-npm i
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-npm run dev 
 ```
-
-# Comando GitHub:
+# 2. Depois rode isso:
 Para baixar o repositorio no seu pc:
 `git clone https://github.com/davilima-br/interface_loja`
 
+# 3. Rode isso para instalar as dependencias:
 
-Para baixar as mudanças feitas pelos outros:
-`git pull`
+```
+npm i
+```
+* Para rodar o projeto: `npm run dev`
 
-Para mandar as mudanças que você fez para o GitHub:
-rodar o "run.bat" no terminal 
-`./run.bat` 
-e colocar nas aspas do commit oq você fez de mudança ` git commit -m "alteração"`
+
+# 3. Para baixar as mudanças feitas pelos outros:
+```
+git pull
+```
+
+# 4. Para mandar as mudanças que você fez para o GitHub:
+* Primeiro vá no arquivo "run.bat" e descreva sua mudança em `git commit -m "mudança"`
+* Depois rode no terminal
+```
+./run.bat
+```
+
