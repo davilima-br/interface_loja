@@ -1,3 +1,3 @@
 git add .
-git commit -m "ajeitamos a pagina 01"
+git commit -m "segundo dia arrumando pg 2"
 git push
