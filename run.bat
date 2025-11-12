@@ -1,3 +1,3 @@
 git add .
-git commit -m "Fiz o metodo post"
+git commit -m "commit do cabecalio"
 git push
