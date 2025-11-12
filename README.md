@@ -5,7 +5,10 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 # 2. Depois rode isso:
 Para baixar o repositorio no seu pc:
-`git clone https://github.com/davilima-br/interface_loja`
+
+```
+git clone https://github.com/davilima-br/interface_loja
+```
 
 # 3. Rode isso para instalar as dependencias:
 

@@ -1,3 +1,3 @@
 git add .
-git commit -m "o express funcionouuu"
+git commit -m "Fiz o metodo post"
 git push
