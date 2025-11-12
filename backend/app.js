@@ -7,11 +7,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors())
 
-const server = app.listen(8000, () => {
-    console.log('Conectando com servidor...')
-})
 
-app.get('/products', async (req, res) => {
+app.get('/products', (req, res) => {
         db.query('SELECT * FROM products')
         .then((e) => {
             res.status(200).json(e.rows)
@@ -20,9 +17,14 @@ app.get('/products', async (req, res) => {
     }
 )
 
+const server = app.listen(8000, () => {
+    console.log('Conectando com servidor...')
+})
+
 const shutdown = async () => {
     console.log('\nEncerrando servidor...')
     server.close()
+    await db.end()
     console.log('Conexões encerradas com sucesso.')
     process.exit(0)
 }
