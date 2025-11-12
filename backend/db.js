@@ -1,5 +1,6 @@
 import { Pool } from "pg";
-require ('dotenv').config()
+import dotenv from 'dotenv';
+dotenv.config();
 
 const dbConfig = {
   host: process.env.DB_HOST,
@@ -13,4 +14,4 @@ const dbConfig = {
 
 const pool = new Pool(dbConfig)
 
-module.exports = pool 
+export default pool 
