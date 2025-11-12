@@ -58,27 +58,3 @@ const shutdown = async () => {
 
 process.on('SIGINT', shutdown)
 process.on('SIGTERM', shutdown)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//export async function POST(request) {
-//  try {
-//    const body = await request.json();
-//    const { name, description, price, image_url, category } = body;
-//
-//    await pool.query(
-//      "INSERT INTO products (name, description, price, image_url, category) VALUES ($1, $2, $3, $4, $5)",
-//      [name, description, price, image_url, category]
-//    );
