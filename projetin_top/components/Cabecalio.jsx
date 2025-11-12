@@ -12,7 +12,7 @@ export default function Cabecalio() {
       </div><br />
 
       {/* Menu de navegação */}
-      <nav className="flex items-center justify-center space-x-8 text-[13px] text-gray-800 font-medium tracking-wide w-full gap-[]">
+      <nav className="flex gap-4 items-center justify-center space-x-8 text-[13px] text-gray-800 font-medium tracking-wide w-full espace-between">
         {[ "HOME", "SHOP", "ABOUT US", "JEWELRY", "WATCH" ].map((item) => (
           <Link
             key={item}
