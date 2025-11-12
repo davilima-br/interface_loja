@@ -7,10 +7,9 @@ export default function Home() {
 
             <section className="container banner">
                 <div className="banner-text">
-                    <div className="Titulo">Classic Cotton T-Shirt</div>
+                    <div className="Titulo">Classic Watch Collection </div>
 
-                    <p>Experience ultimate comfort with our premium cotton t-shirts. Perfect for everyday wear, they provide a stylish
-                        and relaxed fit for any occasion.</p>
+                    <p>Discover timeless elegance with our premium watches. Crafted for both style and durability, our collection offers the perfect timepiece for any occasion — from casual to formal, these watches are designed to complement your lifestyle.</p>
                     <button className="btn-red">Shop Now <ArrowRight className='SetaButton'/></button>
                 </div>
 

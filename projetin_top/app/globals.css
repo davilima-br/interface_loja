@@ -32,38 +32,6 @@ a {
   margin: 0 auto;
 }
 
-/* Header */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-  font-weight: 700;
-  font-family: 'Anton', sans-serif;
-}
-
-header .logo {
-  font-size: 1.6rem;
-}
-
-nav {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  font-weight: 600;
-  font-family: 'Anton', sans-serif;
-  font-size: 0.9rem;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-nav .get-pro {
-  font-weight: 900;
-  letter-spacing: 1.5px;
-}
-
 
 /* Banner principal */
 .banner {

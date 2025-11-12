@@ -5,30 +5,19 @@ import Link from "next/link";
 
 export default function Cabecalio() {
   return (
-    <header className="flex flex-col items-center justify-center bg-white py-4 border-b border-gray-200 relative">
+    <header className="flex flex-col items-center justify-center h-24 bg-white py-4 border-b border-gray-200 relative">
       {/* Logo */}
-      <div className="text-4xl italic font-serif mt-2 mb-3 tracking-wide absolute top-3">
+      <div className="text-4xl italic font-serif mt-2 mb-3 tracking-wide">
         Cartirê
-      </div>
-      <br />
-      <br />
+      </div><br />
 
       {/* Menu de navegação */}
-      <nav className="flex items-center justify-center space-x-8 text-[13px] text-gray-800 font-medium tracking-wide">
-        {[
-          "ALTA JOALHERIA",
-          "JOALHERIA",
-          "RELÓGIOS",
-          "BOLSAS E ACESSÓRIOS",
-          "PERFUMES",
-          "ART DE VIVRE",
-          "A MAISON",
-          "NEWS",
-        ].map((item) => (
+      <nav className="flex items-center justify-center space-x-8 text-[13px] text-gray-800 font-medium tracking-wide w-full gap-[]">
+        {[ "HOME", "SHOP", "ABOUT US", "JEWELRY", "WATCH" ].map((item) => (
           <Link
             key={item}
             href=""
-            className="relative group hover:text-black transition duration-200 no-underline"
+            className="relative group hover:text-black transition duration-200 no-underline decoration-transparent"
           >
             {item}
             {/* Linha inferior animada */}
@@ -42,7 +31,7 @@ export default function Cabecalio() {
         </div>
 
         {/* Ícones lado direito */}
-        <div className="flex items-center space-x-4 text-gray-700">
+        <div className="flex items-center space-x-4 text-gray-700 gap-[14px]">
           <MapPin size={20} className="cursor-pointer hover:text-[#B30000]" />
           <Heart size={20} className="cursor-pointer hover:text-[#B30000]" />
           <UserRound size={20} className="cursor-pointer hover:text-[#B30000]" />
