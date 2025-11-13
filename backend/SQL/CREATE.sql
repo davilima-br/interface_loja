@@ -5,12 +5,13 @@ CREATE TABLE "user" (
 );
 
 CREATE TABLE products (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description TEXT,
-    price DECIMAL(10,2),
-    category VARCHAR(255),
-    image_URL TEXT
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(255) NOT NULL,
+	description TEXT,
+	price DECIMAL(10,2),
+	category VARCHAR(255),
+	image_URL TEXT,
+	3D_image VARCHAR(300)
 );
 
 CREATE TABLE size (

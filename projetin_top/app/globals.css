@@ -242,3 +242,35 @@ a {
 .btn-light:hover {
   background-color: #cccbcb;
 }
+
+
+
+/* Efeito 3D dinâmico com sombra aprimorada */
+.hover-3d {
+  position: relative;
+  display: inline-block;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  will-change: transform;
+  transition: transform 0.15s ease-out;
+}
+
+/* Sombra envolvente mais intensa */
+.hover-3d::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.35),   /* sombra mais profunda */
+    0 15px 25px rgba(0, 0, 0, 0.25),   /* sombra intermediária */
+    0 5px 10px rgba(0, 0, 0, 0.2);     /* sombra suave de contorno */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.hover-3d:hover::after {
+  opacity: 1;
+}
+
