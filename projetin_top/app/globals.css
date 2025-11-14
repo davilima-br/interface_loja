@@ -245,32 +245,89 @@ a {
 
 
 
-/* Efeito 3D dinâmico com sombra aprimorada */
+/* ----- CONTAINER 3D ----- */
 .hover-3d {
   position: relative;
-  display: inline-block;
+  display: block;             /* necessário para ::after funcionar no IMG */
+  width: 116px;               /* seu tamanho final */
+  height: 200px;
   transform-style: preserve-3d;
   perspective: 1000px;
-  will-change: transform;
-  transition: transform 0.15s ease-out;
+  transition: transform 0.35s ease;
+  --rotateX: 0deg;
+  --rotateY: 0deg;
+  overflow: hidden;           /* mantém o raio da imagem */
+  border-radius: 12px;
 }
 
-/* Sombra envolvente mais intensa */
+/* ----- ESTADO DE MOVIMENTO / HOVER REAL ----- */
+.hover-3d.hovering {
+  transform:
+    perspective(1000px)
+    rotateX(var(--rotateX))
+    rotateY(var(--rotateY))
+    scale(1.05);
+}
+
+/* ----- SOMBRA PROFISSIONAL (FUNCIONANDO EM IMG) ----- */
 .hover-3d::after {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
+  z-index: -1;
   box-shadow:
-    0 30px 60px rgba(0, 0, 0, 0.35),   /* sombra mais profunda */
-    0 15px 25px rgba(0, 0, 0, 0.25),   /* sombra intermediária */
-    0 5px 10px rgba(0, 0, 0, 0.2);     /* sombra suave de contorno */
+    0 40px 70px rgba(0, 0, 0, 0.35),
+    0 20px 35px rgba(0, 0, 0, 0.25),
+    0 10px 15px rgba(0, 0, 0, 0.2);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transform: translateZ(-30px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
   pointer-events: none;
 }
 
-.hover-3d:hover::after {
+/* ----- SOMBRA AO HOVER ----- */
+.hover-3d.hovering::after {
   opacity: 1;
+  transform: translateZ(-50px);
 }
 
+.FundoRelogio {
+  background-color: #ffffff00;
+  border-radius: 10px;
+  width: 250px;
+  padding: 12px;
+  text-align: center;
+
+  /* Sombra suave + sensação de elevação */
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.18),
+    0 4px 10px rgba(0, 0, 0, 0.08);
+
+  transform: translateY(0);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+}
+
+.FundoRelogio:hover {
+  /* elevação bem leve e discreta */
+  transform: translateY(-3px);
+  box-shadow:
+    0 18px 36px rgba(0, 0, 0, 0.20),
+    0 6px 14px rgba(0, 0, 0, 0.1);
+}
+
+.NomeProduto {
+  position: relative;
+  left: -7px;
+  font-size: 26px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.Preco {
+  position:relative;
+  left: -10px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+  color: #7a1515;
+}

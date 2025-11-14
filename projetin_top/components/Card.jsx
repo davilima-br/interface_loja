@@ -1,48 +1,64 @@
 "use client";
-import React, { useRef } from "react";
 
-export default function Card3D() {
+import { AlignCenter } from "lucide-react";
+import { useRef } from "react";
+
+export default function Card3D({ nome, preco, imagem }) {
   const cardRef = useRef(null);
 
-  const handleMouseMove = (e) => {
+  function handleMouseMove(e) {
     const card = cardRef.current;
     if (!card) return;
 
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    const midX = rect.width / 2;
-    const midY = rect.height / 2;
 
-    const rotateX = ((y - midY) / midY) * 10;
-    const rotateY = ((x - midX) / midX) * -10;
+    const rotateY = ((x / rect.width) * 30 - 15).toFixed(2);
+    const rotateX = -((y / rect.height) * 30 - 15).toFixed(2);
 
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-  };
+    card.style.setProperty("--rotateX", `${rotateX}deg`);
+    card.style.setProperty("--rotateY", `${rotateY}deg`);
+    card.classList.add("hovering");
+  }
 
-  const handleMouseLeave = () => {
+  function handleMouseLeave() {
     const card = cardRef.current;
-    card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
-  };
+    if (!card) return;
+
+    card.classList.remove("hovering");
+    card.style.setProperty("--rotateX", "0deg");
+    card.style.setProperty("--rotateY", "0deg");
+  }
 
   return (
-    <div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="hover-3d"
-    >
-      <figure className="card w-80 bg-base-100 shadow-xl rounded-2xl overflow-hidden">
+    <>
+      <div className="FundoRelogio">
         <img
-          src="https://img.daisyui.com/images/stock/creditcard.webp"
-          alt="3D card"
-          className="w-full h-auto"
+          ref={cardRef}
+          src={imagem}
+          alt={nome}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          className="
+        hover-3d
+        transition-transform duration-200
+      "
+          style={{
+            width: "auto",
+            height: "260px",
+            objectFit: "contain",
+            cursor: "pointer",
+            filter: "drop-shadow(0 12px 18px rgba(0,0,0,0.45))",
+            transform: "perspective(800px) rotateX(var(--rotateX)) rotateY(var(--rotateY))",
+          }}
         />
-        <div className="card-body">
-          <div className="card-actions justify-end">
-          </div>
-        </div>
-      </figure>
-    </div>
+
+        <span className="NomeProduto mt-2 text-center">Relogio Cartirê</span><br />
+        <span className="Preco text-center">R$ 10.000</span>
+
+
+      </div>
+    </>
   );
 }
