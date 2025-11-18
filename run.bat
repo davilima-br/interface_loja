@@ -1,3 +1,3 @@
 git add .
-git commit -m "criamos o Rodape"
+git commit -m "melhoramos o Rodape"
 git push

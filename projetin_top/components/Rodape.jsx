@@ -5,14 +5,15 @@ import Link from "next/link";
 
 export default function Rodape() {
   return (
-    <footer className="footer footer-horizontal footer-center bg-white text-primary-content p-10 fixed bottom-0 left-0 right-0 flex flex-col items-center justify-center">
-      <aside className="text-center">
-        <img src="" alt="" />
-        <p className="font-bold mb-2">
+    <footer className="footer footer-horizontal footer-center bg-white text-primary-content p-10 bottom-0 left-0 right-0 flex flex-col items-center justify-center">
+      <aside className="text-center"><br />
+      <div className="text-6xl italic font-serif mt-2 mb-3 tracking-wide">
+        C
+      </div>
+        <p className="text-5x1 font-bold mb-2 ">
           Projeto Cartirê
-          <br />
-          Desde 2024
         </p>
+        <p>Desde - 2024</p><br />
         <p>Copyright © {new Date().getFullYear()} - Todos os direitos livres para uso</p>
       </aside>
       <nav className="mt-4">
@@ -48,7 +49,7 @@ export default function Rodape() {
               className="fill-current">
               <path
                 d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
-            </svg>
+            </svg><br />
           </a>
         </div>
       </nav>

@@ -16,7 +16,7 @@ export default function Cabecalio() {
         {[ "HOME", "SHOP", "ABOUT US", "JEWELRY", "WATCH" ].map((item) => (
           <Link
             key={item}
-            href=""
+            href={item === "SHOP" ? "./shop" : item === "HOME" ? "./home" : ""}
             className="relative group hover:text-black transition duration-200 no-underline decoration-transparent"
           >
             {item}

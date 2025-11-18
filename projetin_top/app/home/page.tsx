@@ -7,7 +7,7 @@ import Rodape from '@/components/Rodape'
 export default function caminho() {
   return (
     <>
-      <Shop/>
+      <Home/>
     </>
   );
 }

@@ -31,6 +31,7 @@ export default function RootLayout({
       >
         <Cabecalio/>
         {children}
+        <Rodape/>
       </body>
     </html>
   );
