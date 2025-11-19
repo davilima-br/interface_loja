@@ -1,3 +1,3 @@
 git add .
-git commit -m "Fizemos mais um pouco do filter e mudamos a sombra dos relogios para vermelho"
+git commit -m "Pequenos ajustes" -m "O .bat não funciona em linux então fiz o linux.sh"
 git push

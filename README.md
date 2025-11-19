@@ -11,7 +11,7 @@ git clone https://github.com/davilima-br/interface_loja
 Abra o VSCode na pasta "Interface_loja" e cole no terminal:
 
 ```
-./start
+./start.bat
 ```
 
 ## 3. Para baixar as mudanças feitas pelos outros:
