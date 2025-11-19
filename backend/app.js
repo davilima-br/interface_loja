@@ -10,25 +10,42 @@ app.use(cors())
 
 app.get('/produtos', (req, res) => {
     db.query('SELECT * FROM produtos')
-        .then((e) => res.status(200).json(e.rows ))
+        .then((e) => res.status(200).json(e.rows))
         .catch((err) => res.status(500).json({ erro: err.stack }))
 }
 )
 
+app.get('/produtos/:id', (req, res) => {
+    const { id } = req.params
+
+
+
+    db.query('SELECT * FROM produtos WHERE id = $1',[id])
+        .then(result => {
+        if (result.rows.length === 0) {
+            return res.status(404).json({ erro: 'produto não encontrado' })
+        }
+        res.status(200).json(result.rows[0])
+    })
+        .catch(err => {
+            console.error(err)
+            res.status(500).json({ erro: 'Erro ao buscar produto', details: err.stack })
+        })
+})
 
 app.post('/produtos', (req, res) => {
-    const { nome, descricao, preco, categoria, cor, imagem_url } = req.body
+    const { nome, descricao, preco, categoria, cor, imagem_url, imagem_3D } = req.body
 
     if (!nome || !preco) {
         return res.status(400).json({ erro: 'Nome e preço são obrigatórios' })
-    } 
+    }
 
     const query = `
-        INSERT INTO produtos (nome, descricao, preco, categoria, cor, imagem_url)
-        VALUES ($1, $2, $3, $4, $5) RETURNING *
+        INSERT INTO produtos (nome, descricao, preco, categoria, cor, imagem_url, imagem_3D)
+        VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *
     `
 
-    const values = [nome, descricao, preco, categoria, cor, imagem_url]
+    const values = [nome, descricao, preco, categoria, cor, imagem_url, imagem_3D]
 
     db.query(query, values)
         .then((result) => {

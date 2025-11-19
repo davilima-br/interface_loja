@@ -21,7 +21,7 @@ CREATE TABLE produtos (
     categoria VARCHAR(255),
     cor VARCHAR(50), 
     imagem_url TEXT,
-    "3D_imagem" VARCHAR(300)
+    imagem_3D VARCHAR(300)
 );
 
 CREATE TABLE carrinho_item (
@@ -33,7 +33,7 @@ CREATE TABLE carrinho_item (
     FOREIGN KEY (userID) REFERENCES "user"(id) ON DELETE CASCADE
 );
 
-INSERT INTO produtos (nome, descricao, preco, categoria, cor, imagem_url, "3D_imagem") VALUES
+INSERT INTO produtos (nome, descricao, preco, categoria, cor, imagem_url, imagem_3D) VALUES
 (
   'Grand Seiko SBGJ251',
   'O equinócio da primavera finalmente chega...',

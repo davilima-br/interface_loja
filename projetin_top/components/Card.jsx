@@ -1,6 +1,5 @@
 "use client";
 
-import { AlignCenter } from "lucide-react";
 import { useRef } from "react";
 
 export default function Card3D({ nome, preco, imagem }) {
@@ -54,8 +53,8 @@ export default function Card3D({ nome, preco, imagem }) {
           }}
         />
 
-        <span className="NomeProduto mt-2 text-center">Relogio Cartirê</span><br />
-        <span className="Preco text-center">R$ 10.000</span>
+        <span className="NomeProduto mt-2 text-center">{nome}</span><br />
+        <span className="Preco text-center">R$ {preco}</span>
 
 
       </div>

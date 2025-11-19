@@ -40,12 +40,14 @@ export default function Shop() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {produtosFiltrados.map((p) => (
-            <Card3D
-              key={p.id}
-              nome={p.nome}
-              preco={p.preco}
-              imagem={p.imagem_url}
-            />
+            <a key={p.id} href={`/shop/${p.id}`}>
+              <Card3D
+                key={p.id}
+                nome={p.nome}
+                preco={p.preco}
+                imagem={p.imagem_url}
+              />
+            </a>
           ))}
         </div>
       </main>

@@ -1,4 +1,4 @@
-INSERT INTO produtos (nome, descricao, preco, categoria, cor, image_url, "3D_imagem") VALUES
+INSERT INTO produtos (nome, descricao, preco, categoria, cor, image_url, imagem_3D) VALUES
 (
   'Grand Seiko SBGJ251',
   'O equinócio da primavera finalmente chega...',

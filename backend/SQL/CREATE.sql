@@ -12,7 +12,7 @@ CREATE TABLE produtos (
     categoria VARCHAR(255),
     cor VARCHAR(50), 
     imagem_url TEXT,
-    "3D_image" VARCHAR(300)
+    imagem_3D VARCHAR(300)
 );
 
 CREATE TABLE carrinho_item (
