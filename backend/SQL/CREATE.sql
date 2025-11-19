@@ -1,33 +1,25 @@
 CREATE TABLE "user" (
     id SERIAL PRIMARY KEY,
     login VARCHAR(255),
-    password VARCHAR(255) NOT NULL
+    senha VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE products (
-	id SERIAL PRIMARY KEY,
-	name VARCHAR(255) NOT NULL,
-	description TEXT,
-	price DECIMAL(10,2),
-	category VARCHAR(255),
-	image_URL TEXT,
-	3D_image VARCHAR(300)
-);
-
-CREATE TABLE size (
+CREATE TABLE produtos (
     id SERIAL PRIMARY KEY,
-    p VARCHAR(10),
-    m VARCHAR(10),
-    g VARCHAR(10),
-    ProductsID INT,
-    FOREIGN KEY (ProductsID) REFERENCES products(id) ON DELETE CASCADE ON UPDATE CASCADE
+    nome VARCHAR(255) NOT NULL,
+    descricao TEXT,
+    preco DECIMAL(10, 2),
+    categoria VARCHAR(255),
+    cor VARCHAR(50), 
+    imagem_url TEXT,
+    "3D_image" VARCHAR(300)
 );
 
-CREATE TABLE cart_item (
+CREATE TABLE carrinho_item (
     id SERIAL PRIMARY KEY,
-    ProductsID INT,
-    userID INT REFERENCES "user"(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    quantity INT,
-    FOREIGN KEY (ProductsID) REFERENCES products(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (userID) REFERENCES "user"(id) ON DELETE CASCADE ON UPDATE CASCADE
+    produtosID INT,
+    userID INT,
+    quantidade INT,
+    FOREIGN KEY (produtosID) REFERENCES produtos(id) ON DELETE CASCADE,
+    FOREIGN KEY (userID) REFERENCES "user"(id) ON DELETE CASCADE
 );

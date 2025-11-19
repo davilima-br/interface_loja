@@ -1,5 +1,5 @@
 import db from './db.js'
-import express, { urlencoded, json } from 'express'
+import express from 'express'
 import cors from 'cors'
 const app = express()
 
@@ -8,34 +8,32 @@ app.use(express.json())
 app.use(cors())
 
 
-app.get('/products', (req, res) => {
-        db.query('SELECT * FROM products')
-        .then((e) => {
-            res.status(200).json(e.rows)
-        })
-        .catch((err) => res.status(500).json({erro: err.stack}))
-    }
+app.get('/produtos', (req, res) => {
+    db.query('SELECT * FROM produtos')
+        .then((e) => res.status(200).json(e.rows ))
+        .catch((err) => res.status(500).json({ erro: err.stack }))
+}
 )
 
 
-app.post('/products', (req, res) => {
-    const { name, description, price, category, image_URL } = req.body
+app.post('/produtos', (req, res) => {
+    const { nome, descricao, preco, categoria, cor, imagem_url } = req.body
 
-    if (!name || !price) {
+    if (!nome || !preco) {
         return res.status(400).json({ erro: 'Nome e preço são obrigatórios' })
-    }
+    } 
 
     const query = `
-        INSERT INTO products (name, description, price, category, image_URL)
+        INSERT INTO produtos (nome, descricao, preco, categoria, cor, imagem_url)
         VALUES ($1, $2, $3, $4, $5) RETURNING *
     `
 
-    const values = [name, description, price, category, image_URL]
+    const values = [nome, descricao, preco, categoria, cor, imagem_url]
 
     db.query(query, values)
         .then((result) => {
-            const newProduct = result.rows[0]
-            res.status(201).json({ message: 'Produto adicionado com sucesso!', product: newProduct })
+            const newProduto = result.rows[0]
+            res.status(201).json({ message: 'Produto adicionado com sucesso!', produto: newProduto })
         })
         .catch((err) => {
             console.error(err)
@@ -45,7 +43,7 @@ app.post('/products', (req, res) => {
 
 
 const server = app.listen(8000, () => {
-    console.log('Conectando com servidor...')
+    console.log('Servidor rodando...')
 })
 
 const shutdown = async () => {
