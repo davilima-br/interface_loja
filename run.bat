@@ -1,3 +1,3 @@
 git add .
-git commit -m "criei o start pra rodar o projeto todo"
+git commit -m "Fizemos mais um pouco do filter e mudamos a sombra dos relogios para vermelho"
 git push
