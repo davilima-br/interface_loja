@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import { Check } from "lucide-react"; // Importando o ícone Check do Lucide
+import { Check } from "lucide-react"; // Importing Check icon
 
 const Filter = ({ setFiltro }) => {
   const [selected, setSelected] = useState("");
@@ -20,11 +20,8 @@ const Filter = ({ setFiltro }) => {
 
         <ul className="space-y-1">
           {[
-            "T-Shirts",
-            "Hoodies",
-            "Oversized Tees",
-            "Graphic Tees",
-            "Zip-Up Hoodies",
+            "Casual",
+            "Formal"
           ].map(item => (
             <li
               key={item}
@@ -39,7 +36,7 @@ const Filter = ({ setFiltro }) => {
                   selected === item
                     ? "bg-[#9b1b1b] border-[#9b1b1b]"
                     : "bg-transparent border-black"
-                } hover:border-[#9b1b1b]`} // Borda vermelha ao passar o mouse
+                } hover:border-[#9b1b1b]`}
               >
                 {selected === item && <Check className="text-white text-sm" />}
               </span>
@@ -57,11 +54,12 @@ const Filter = ({ setFiltro }) => {
 
         <ul className="space-y-1">
           {[
-            "Casual Wear",
-            "Street Style",
-            "Oversized Fit",
-            "Cotton Fabric",
-            "Trendy Designs",
+            "Green",
+            "Black",
+            "Blue",
+            "Light Blue",
+            "White",
+            "Ivory"
           ].map(item => (
             <li
               key={item}
@@ -76,7 +74,7 @@ const Filter = ({ setFiltro }) => {
                   selected === item
                     ? "bg-[#9b1b1b] border-[#9b1b1b]"
                     : "bg-transparent border-black"
-                } hover:border-[#9b1b1b]`} // Borda vermelha ao passar o mouse
+                } hover:border-[#9b1b1b]`}
               >
                 {selected === item && <Check className="text-white text-sm" />}
               </span>
@@ -94,15 +92,15 @@ const Filter = ({ setFiltro }) => {
 
         <ul className="space-y-1">
           {[
-            "Less than $10",
-            "$10 - $20",
-            "$20 - $30",
-            "$30 - $40",
-            "$40 - $10000",
+            "Up to $5,000",
+            "$5,000 - $10,000",
+            "$10,000 - $20,000",
+            "$20,000 - $50,000",
+            "Above $50,000"
           ].map(item => (
             <li
               key={item}
-              className="cursor-pointer flex items-center "
+              className="cursor-pointer flex items-center"
               onClick={() => {
                 setFiltro(item);
                 setSelected(item);
@@ -113,7 +111,7 @@ const Filter = ({ setFiltro }) => {
                   selected === item
                     ? "bg-[#9b1b1b] border-[#9b1b1b]"
                     : "bg-transparent border-black"
-                } hover:border-[#9b1b1b]`} // Borda vermelha ao passar o mouse
+                } hover:border-[#9b1b1b]`}
               >
                 {selected === item && <Check className="text-white text-sm" />}
               </span>

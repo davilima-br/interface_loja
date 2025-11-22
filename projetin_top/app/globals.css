@@ -334,3 +334,34 @@ a {
   font-size: 20px;
   color: #7a1515;
 }
+.botao-carrinho {
+  background-color: #7A1515;
+  color: white;
+  padding: 10px 22px;        /* 🔽 ainda menor */
+  border-radius: 10px;
+  font-size: 1rem;           /* 🔽 fonte menor */
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;                  /* 🔽 gap menor */
+  width: fit-content;
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 12px rgba(122, 21, 21, 0.20),
+    0 2px 6px rgba(122, 21, 21, 0.12);
+
+  transition: background-color 0.25s ease,
+              transform 0.2s ease,
+              box-shadow 0.25s ease;
+}
+
+.botao-carrinho:hover {
+  background-color: #5c0e0e;
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 10px 16px rgba(122, 21, 21, 0.25),
+    0 4px 8px rgba(122, 21, 21, 0.18);
+}
+
