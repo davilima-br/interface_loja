@@ -31,7 +31,7 @@ export default function Shop() {
   return (
     <div className="min-h-screen flex bg-gray-50 ">
       {/* MENU LATERAL */}
-      <aside className="w-64 bg-white p-6 border-r border-gray-200 hidden md:block">
+      <aside className="w-64 bg-white p-6 border-r border-gray-200 hidden md:block sticky top-0 h-screen overflow-y-auto">
         <Filter setFiltro={setFiltro} /> {/* Passa a função setFiltro para o Filter */}
       </aside>
 

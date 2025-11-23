@@ -1,3 +1,3 @@
 git add .
-git commit -m "arumei alguns detalhes da pagina 3 coloque um link no carinho para ir pra pagina 4"
+git commit -m "Arrumei o mais um pouco do filter, o carrinho continua o mesmo"
 git push
