@@ -43,7 +43,7 @@ export default function ProductPage() {
             por horologia.
           </p><br />
 
-          {/* QUANTITY */}
+          {/* Quantidade */}
           <div className="mt-6">
             <label className="font-medium text-gray-800">Quantity:  </label>
             <input

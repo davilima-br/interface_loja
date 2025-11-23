@@ -1,8 +1,8 @@
-INSERT INTO produtos (nome, descricao, preco, categoria, cor, image_url, imagem_3D) VALUES
+INSERT INTO produtos (nome, descricao, preco, categoria, cor, imagem, imagem_3d) VALUES
 (
   'Grand Seiko SBGJ251',
   'O equinócio da primavera finalmente chega...',
-  22000.00,
+  20000.00,
   'Casual',
   'Verde',
   'https://www.grand-seiko.com/br-pt/-/media/Images/Product--Image/All/GrandSeiko/2022/02/19/22/07/SBGJ251G/SBGJ251G.png',
@@ -11,7 +11,7 @@ INSERT INTO produtos (nome, descricao, preco, categoria, cor, image_url, imagem_
 (
   'Grand Seiko SBGE201',
   'Equipped with a GMT hand and a rotating bezel...',
-  22000.00,
+  15000.00,
   'Formal',
   'Preto',
   'https://www.grandseikoboutique.co.uk/wp-content/smush-avif/2022/12/SBGE201G.png.avif',
@@ -20,7 +20,7 @@ INSERT INTO produtos (nome, descricao, preco, categoria, cor, image_url, imagem_
 (
   'Grand Seiko SBGA407G',
   'Na região de Shinshu, no Japão, o inverno tem sua própria beleza...',
-  22000.00,
+  18000.00,
   'Casual',
   'Azul',
   'https://www.grand-seiko.com/br-pt/-/media/Images/Product--Image/All/GrandSeiko/2022/02/19/21/50/SBGA407G/SBGA407G.png',
@@ -29,7 +29,7 @@ INSERT INTO produtos (nome, descricao, preco, categoria, cor, image_url, imagem_
 (
   'Grand Seiko SBGJ249',
   'O alto verão se aproxima e termina a estação das chuvas...',
-  22000.00,
+  50000.00,
   'Casual',
   'Azul Claro',
   'https://www.grand-seiko.com/br-pt/-/media/Images/Product--Image/All/GrandSeiko/2022/02/19/22/07/SBGJ249G/SBGJ249G.png',
@@ -38,7 +38,7 @@ INSERT INTO produtos (nome, descricao, preco, categoria, cor, image_url, imagem_
 (
   'Grand Seiko SBGA211G',
   'Este clássico Spring Drive é confeccionado pelos artesãos...',
-  22000.00,
+  5000.00,
   'Formal',
   'Branco',
   'https://www.grand-seiko.com/br-pt/-/media/Images/Product--Image/All/GrandSeiko/2022/02/19/21/47/SBGA211G/SBGA211G.png',
@@ -47,7 +47,7 @@ INSERT INTO produtos (nome, descricao, preco, categoria, cor, image_url, imagem_
 (
   'Grand Seiko SBGM221G',
   'Este relógio clássico GMT combina o estilo que cativou...',
-  22000.00,
+  3000.00,
   'Formal',
   'Marfim',
   'https://www.grand-seiko.com/br-pt/-/media/Images/Product--Image/All/GrandSeiko/2022/02/19/22/10/SBGM221G/SBGM221G.png',
@@ -56,7 +56,7 @@ INSERT INTO produtos (nome, descricao, preco, categoria, cor, image_url, imagem_
 (
   'Grand Seiko SBGJ235',
   'The blue dial—which features a "Mount Iwate pattern"...',
-  22000.00,
+  11000.00,
   'Casual',
   'Azul',
   'https://grandseikoboutique.in/cdn/shop/products/SBGJ235G_1500x1500.png?v=1624424755',

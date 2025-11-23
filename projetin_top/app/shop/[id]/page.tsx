@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, use } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 // Ícones Lucide
@@ -13,17 +13,27 @@ import {
   ShoppingCart
 } from "lucide-react";
 
-export default function ProdutoPage({ params }: any) {
-  const { id } = use(params);
+export default function ProdutoPage(props: any) {
+  const { id } = React.use(props.params);
 
   const [produto, setProduto] = useState<any>(null);
+  const [sessionId, setSessionId] = useState("");
+
+  // Criar sessao_id
+  useEffect(() => {
+    let s = localStorage.getItem("sessao_id");
+    if (!s) {
+      s = crypto.randomUUID();
+      localStorage.setItem("sessao_id", s);
+    }
+    setSessionId(s);
+  }, []);
 
   useEffect(() => {
     async function load() {
+      {/* carrega o produto */ }
       try {
-        const res = await fetch(`http://localhost:8000/produtos/${id}`);
-        if (!res.ok) throw new Error("Erro no servidor");
-
+        const res = await fetch(`http://localhost:8000/produtos/${id}`); 
         const data = await res.json();
         setProduto(data);
       } catch (error) {
@@ -34,6 +44,26 @@ export default function ProdutoPage({ params }: any) {
   }, [id]);
 
   if (!produto) return <h1>Carregando...</h1>;
+
+  async function addToCart() {
+    try {
+      const res = await fetch("http://localhost:8000/carrinho", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          produtos_id: produto.id,
+          quantidade: 1,
+          sessao_id: sessionId
+        })
+      });
+
+      if (!res.ok) throw new Error("Erro ao adicionar");
+      alert("Produto adicionado ao carrinho!");
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao adicionar ao carrinho");
+    }
+  }
 
   return (
     <div
@@ -78,9 +108,7 @@ export default function ProdutoPage({ params }: any) {
       {/* INFORMAÇÕES — 50% */}
       <div
         className="flex flex-col space-y-10 max-lg:w-full"
-        style={{
-          width: "50%",
-        }}
+        style={{ width: "50%" }}
       >
         <h1
           className="font-bold leading-tight tracking-wide"
@@ -94,9 +122,7 @@ export default function ProdutoPage({ params }: any) {
 
         <p
           className="text-gray-700 leading-relaxed"
-          style={{
-            fontSize: "1.2vw",
-          }}
+          style={{ fontSize: "1.2vw" }}
         >
           {produto.descricao}
         </p>
@@ -116,7 +142,7 @@ export default function ProdutoPage({ params }: any) {
             IVA incl.
           </p>
         </div>
-/
+        /
         {/* ÍCONES INFORMATIVOS */}
         <div
           className="text-gray-800 mt-4"
@@ -146,14 +172,13 @@ export default function ProdutoPage({ params }: any) {
             <CalendarDays size={26} color="#7A1515" />
             Agendar uma visita
           </p>
-          {/* 🛒 BOTÃO ADICIONAR AO CARRINHO — COM LUCIDE */}
-          <button
-  className="botao-carrinho"
-  onClick={() => alert('Adicionado ao carrinho!')}
->
-  <ShoppingCart size={28} />
-  Adicionar ao Carrinho
-</button>
+
+          {/* 🛒 BOTÃO ADICIONAR AO CARRINHO */}
+          <button className="botao-carrinho flex items-center gap-2" onClick={addToCart}>
+            <ShoppingCart size={28} />
+            Adicionar ao Carrinho
+          </button>
+
         </div>
       </div>
     </div>

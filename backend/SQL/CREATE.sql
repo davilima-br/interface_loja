@@ -1,9 +1,3 @@
-CREATE TABLE "user" (
-    id SERIAL PRIMARY KEY,
-    login VARCHAR(255),
-    senha VARCHAR(255) NOT NULL
-);
-
 CREATE TABLE produtos (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
@@ -11,15 +5,14 @@ CREATE TABLE produtos (
     preco DECIMAL(10, 2),
     categoria VARCHAR(255),
     cor VARCHAR(50), 
-    imagem_url TEXT,
-    imagem_3D VARCHAR(300)
+    imagem TEXT,
+    imagem_3d VARCHAR(300)
 );
 
-CREATE TABLE carrinho_item (
+CREATE TABLE carrinho (
     id SERIAL PRIMARY KEY,
-    produtosID INT,
-    userID INT,
+    produtos_id INT,
+    sessao_id VARCHAR(255) NOT NULL,
     quantidade INT,
-    FOREIGN KEY (produtosID) REFERENCES produtos(id) ON DELETE CASCADE,
-    FOREIGN KEY (userID) REFERENCES "user"(id) ON DELETE CASCADE
+    FOREIGN KEY (produtos_id) REFERENCES produtos(id) ON DELETE CASCADE
 );

@@ -45,7 +45,7 @@ export default function Shop() {
                 key={p.id}
                 nome={p.nome}
                 preco={p.preco}
-                imagem={p.imagem_url}
+                imagem={p.imagem}
               />
             </a>
           ))}

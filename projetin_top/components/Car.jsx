@@ -1,6 +1,35 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 export default function CartPage() {
+    const [carrinho, setCarrinho] = useState([])
+    const [sessionId, setSessionId] = useState("");
+
+    useEffect(() => {
+        let s = localStorage.getItem("sessao_id");
+        if (!s) {
+            s = crypto.randomUUID();
+            localStorage.setItem("sessao_id", s);
+        }
+        setSessionId(s);
+    }, []);
+
+
+    useEffect(() => {
+        if (!sessionId) return;
+
+        async function loadCart() {
+            const res = await fetch(`http://localhost:8000/carrinho?sessao_id=${sessionId}`);
+            const data = await res.json();
+            setCarrinho(data);
+        }
+
+        loadCart();
+    }, [sessionId]);
+
+    const total = carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
+
     return (
         <div
             className="w-[90%] mx-auto py-[5%] space-y-[4%]"
@@ -27,59 +56,38 @@ export default function CartPage() {
                     </div>
 
                     {/* ITEM 1 */}
-                    <div className="w-full border-b py-[4%] flex flex-col sm:flex-row items-center gap-[4%]">
+                    {carrinho.map(item => (
+                        <div key={item.id} className="w-full border-b py-[4%] flex flex-col sm:flex-row items-center gap-[4%]">
 
-                        {/* Image */}
-                        <img
-                            src="/relogi1.png" alt="Relogio"
-                            className="w-[35%] sm:w-[20%] rounded"
-                        />
+                            {/* Image */}
+                            <img
+                                src={item.imagem} alt={item.nome}
+                                className="w-[35%] sm:w-[20%] rounded"
+                            />
 
-                        {/* INFO */}
-                        <div className="w-full sm:w-[60%] space-y-1">
-                            <h3 className="text-[130%] font-bold">Grand Seiko SBGJ251</h3>
-                            <p className="text-gray-500">$6,500.00</p>
-                        </div>
+                            {/* INFO */}
+                            <div className="w-full sm:w-[60%] space-y-1">
+                                <h3 className="text-[130%] font-bold">{item.nome}</h3>
+                                <p className="text-gray-500">${item.preco}</p>
+                            </div>
 
-                        {/* Quantity */}
-                        <div className="w-full sm:w-[20%] flex justify-center my-[2%]">
-                            <div className="flex items-center gap-[20%]">
-                                <button className="border px-4 py-2">-</button>
-                                <span>1</span>
-                                <button className="border px-4 py-2">+</button>
+                            {/* Quantity */}
+                            <div className="w-full sm:w-[20%] flex justify-center my-[2%]">
+
+                                <div className="flex items-center gap-[20%]">
+                                    <button className="border px-4 py-2">-</button>
+                                    <span>{item.quantidade}</span>
+                                    <button className="border px-4 py-2">+</button>
+                                </div>
+
+                            </div>
+
+                            {/* Price */}
+                            <div className="w-full sm:w-[20%] text-right font-semibold text-[120%]">
+                                ${item.preco * item.quantidade}
                             </div>
                         </div>
-
-                        {/* Price */}
-                        <div className="w-full sm:w-[20%] text-right font-semibold text-[120%]">
-                            $6,500.00
-                        </div>
-                    </div>
-
-                    {/* ITEM 2 */}
-                    <div className="w-full border-b py-[4%] flex flex-col sm:flex-row items-center gap-[4%]">
-                        <img
-                            src="relogio2.png" alt="Relogio"
-                            className="w-[35%] sm:w-[20%] rounded"
-                        />
-
-                        <div className="w-full sm:w-[60%] space-y-1">
-                            <h3 className="text-[130%] font-bold">Grand Seiko SBGA407G</h3>
-                            <p className="text-gray-500">$4,800.00</p>
-                        </div>
-
-                        <div className="w-full sm:w-[20%] flex justify-center my-[2%]">
-                            <div className="flex items-center gap-[20%]">
-                                <button className="border px-4 py-2">-</button>
-                                <span>1</span>
-                                <button className="border px-4 py-2">+</button>
-                            </div>
-                        </div>
-
-                        <div className="w-full sm:w-[20%] text-right font-semibold text-[120%]">
-                            $4,800.00
-                        </div>
-                    </div>
+                    ))}
 
                 </div>
 
@@ -87,17 +95,17 @@ export default function CartPage() {
                 <div className="w-full border p-[7%] rounded-lg shadow-sm space-y-[8%]">
 
                     <h2 className="text-[140%] font-bold"
-                     style={{ color: "#7A1515" }}
-                     >Cart Total</h2>
+                        style={{ color: "#7A1515" }}
+                    >Cart Total</h2>
 
-                    <div className="flex justify-between py-[3%] border-b text-gray-600">
+                    {/*<div className="flex justify-between py-[3%] border-b text-gray-600">
                         <span>Subtotal</span>
-                        <span>$11,300.00</span>
-                    </div>
+                        <span>${subtotal}</span>
+                    </div> */}
 
                     <div className="flex justify-between py-[3%] border-b font-bold">
                         <span>Total</span>
-                        <span>$11,300.00</span>
+                        <span>${total}</span>
                     </div>
 
                     {/* Buttons */}
@@ -105,12 +113,12 @@ export default function CartPage() {
                         <button className="w-[50%] border py-[3.5%] hover:bg-gray-100">
                             Update Cart
                         </button>
-                        <button className="w-[50%] bg-black text-white py-[3.5%] hover:bg-gray-800">
+                        <button className="w-[50%] bg-black text-white py-[3.5%] hover:bg-gray-800 cursor-pointer">
                             Continue Shop
                         </button>
                     </div>
 
-                    <button className="w-full bg-red-700 text-white py-[4.5%] hover:bg-red-800">
+                    <button className="w-full bg-red-700 text-white py-[4.5%] hover:bg-red-800 cursor-pointer">
                         Proceed to checkout
                     </button>
 
