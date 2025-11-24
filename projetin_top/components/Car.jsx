@@ -30,6 +30,51 @@ export default function CartPage() {
 
     const total = carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
 
+    async function AtualizaQtd(itemId, novaQtd) {
+        try {
+            const res = await fetch(`http://localhost:8000/carrinho/${itemId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'Application/json' },
+                body: JSON.stringify({ quantidade: novaQtd, sessao_id: sessionId })
+            })
+            if (!res.ok) throw new Error("Erro ao atualizar quantidade")
+
+            const updated = await fetch(`http://localhost:8000/carrinho?sessao_id=${sessionId}`)
+            const data = await updated.json()
+            setCarrinho(data)
+
+        } catch (err) {
+            console.error(err)
+            alert("Erro ao atualizar quantidade")
+        }
+    }
+
+    async function gerarPix() {
+        try {
+            const res = await fetch("http://localhost:8000/pix", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ valor: total })
+            });
+
+            const data = await res.json();
+
+            // Abre uma nova página só com o QR
+            const novaJanela = window.open("", "_blank");
+            novaJanela.document.write(`
+            <h2>Pagamento PIX</h2>
+            <p>Escaneie o QR Code para pagar</p>
+            <img src="${data.qrCode}" style="width:300px"/>
+            <p>Copia e cola:</p>
+            <textarea style="width:100%; height:100px">${data.payload}</textarea>
+        `);
+
+        } catch (err) {
+            console.error(err);
+            alert("Erro ao gerar PIX");
+        }
+    }
+
     return (
         <div
             className="w-[90%] mx-auto py-[5%] space-y-[4%]"
@@ -75,9 +120,19 @@ export default function CartPage() {
                             <div className="w-full sm:w-[20%] flex justify-center my-[2%]">
 
                                 <div className="flex items-center gap-[20%]">
-                                    <button className="border px-4 py-2">-</button>
+                                    <button
+                                        className="border px-4 py-2"
+                                        onClick={() => {
+                                            if (item.quantidade > 1) {
+                                                AtualizaQtd(item.id, item.quantidade - 1)
+                                            }
+                                        }}
+                                    >-</button>
                                     <span>{item.quantidade}</span>
-                                    <button className="border px-4 py-2">+</button>
+                                    <button
+                                        className="border px-4 py-2"
+                                        onClick={() => AtualizaQtd(item.id, item.quantidade + 1)}
+                                    >+</button>
                                 </div>
 
                             </div>
@@ -98,11 +153,6 @@ export default function CartPage() {
                         style={{ color: "#7A1515" }}
                     >Cart Total</h2>
 
-                    {/*<div className="flex justify-between py-[3%] border-b text-gray-600">
-                        <span>Subtotal</span>
-                        <span>${subtotal}</span>
-                    </div> */}
-
                     <div className="flex justify-between py-[3%] border-b font-bold">
                         <span>Total</span>
                         <span>${total}</span>
@@ -110,15 +160,17 @@ export default function CartPage() {
 
                     {/* Buttons */}
                     <div className="flex gap-[5%] mt-[8%]">
-                        <button className="w-[50%] border py-[3.5%] hover:bg-gray-100">
+                        <button className="w-[50%] border py-[3.5%] hover:bg-gray-100 cursor-pointer">
                             Update Cart
                         </button>
-                        <button className="w-[50%] bg-black text-white py-[3.5%] hover:bg-gray-800 cursor-pointer">
+                        <button className="w-[50%] bg-black text-white py-[3.5%] hover:bg-gray-800 cursor-pointer"
+                            onClick={() => window.location.assign("/shop")}>
                             Continue Shop
                         </button>
                     </div>
 
-                    <button className="w-full bg-red-700 text-white py-[4.5%] hover:bg-red-800 cursor-pointer">
+                    <button className="w-full bg-red-700 text-white py-[4.5%] hover:bg-red-800 cursor-pointer"
+                        onClick={gerarPix}>
                         Proceed to checkout
                     </button>
 

@@ -42,7 +42,9 @@ export default function Cabecalio() {
 
         {/* Ícones lado direito */}
         <div className="flex items-center space-x-4 text-gray-700 gap-[14px]">
+          <a href="https://www.google.com/maps/place/53%C2%B050'13.8%22N+9%C2%B021'05.5%22W/@53.8376571,-9.3523546,539m/data=!3m1!1e3!4m4!3m3!8m2!3d53.8371667!4d-9.3515278?entry=ttu&g_ep=EgoyMDI1MTExNy4wIKXMDSoASAFQAw%3D%3Dhttps://www.google.com/maps/place/53%C2%B050'13.8%22N+9%C2%B021'05.5%22W/@53.8373521,-9.352777,641m/data=!3m1!1e3!4m4!3m3!8m2!3d53.8371667!4d-9.3515278?entry=ttu&g_ep=EgoyMDI1MTExNy4wIKXMDSoASAFQAw%3D%3Dhttps://www.google.com/maps/place/53%C2%B050'13.8%22N+9%C2%B021'05.5%22W/@53.8373521,-9.352777,641m/data=!3m1!1e3!4m4!3m3!8m2!3d53.8371667!4d-9.3515278?entry=ttu&g_ep=EgoyMDI1MTExNy4wIKXMDSoASAFQAw%3D%3D">
           <MapPin size={20} className="cursor-pointer hover:text-[#B30000]" />
+          </a>
           <Heart size={20} className="cursor-pointer hover:text-[#B30000]" />
           <UserRound
             size={20}

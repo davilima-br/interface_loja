@@ -24,8 +24,42 @@ export default function Shop() {
   }, []);
 
   // Filtragem dos produtos com base no filtro
-  const produtosFiltrados = produtos.filter((p) =>
-    p.nome.toLowerCase().includes(filtro.toLowerCase())
+
+  function filtrarPorPreco(preco, filtro) {
+    if (!filtro || filtro.tipo !== "preco") return true;
+
+    const faixa = filtro.valor;
+
+    if (faixa === "Up to $5,000")
+      return preco <= 5000;
+
+    if (faixa === "$5,000 - $10,000")
+      return preco >= 5000 && preco <= 10000;
+
+    if (faixa === "$10,000 - $20,000")
+      return preco >= 10000 && preco <= 20000;
+
+    if (faixa === "$20,000 - $50,000")
+      return preco >= 20000 && preco <= 50000;
+
+    if (faixa === "Above $50,000")
+      return preco > 50000;
+
+    return true;
+  }
+
+  const produtosFiltrados = produtos.filter((p) => {
+    if (!filtro) return true
+
+    if (typeof filtro === 'object' && filtro.tipo === 'preco') {
+      return filtrarPorPreco(Number(p.preco), filtro)
+    }
+    return (
+      p.categoria.toLowerCase().includes(filtro.toLowerCase()) ||
+      p.cor.toLowerCase().includes(filtro.toLowerCase()) ||
+      p.preco.toLowerCase().includes(filtro.toLowerCase())
+    )
+  }
   );
 
   return (

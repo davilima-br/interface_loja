@@ -1,6 +1,7 @@
 import db from './db.js'
 import express from 'express'
 import cors from 'cors'
+import pixQRCode from "@dicascripto/pix-qrcode-generator";
 const app = express()
 
 app.use(express.urlencoded({ extended: true }))
@@ -81,6 +82,7 @@ app.get('/carrinho', async (req, res) => {
     }
 });
 
+
 app.post('/carrinho', async (req, res) => {
     const { produtos_id, sessao_id, quantidade } = req.body;
 
@@ -118,83 +120,106 @@ app.post('/carrinho', async (req, res) => {
 });
 
 // Atualizar quantidade do item no carrinho
-//app.put('/carrinho/:id', async (req, res) => {
-//const { id } = req.params;
-//    const { quantidade, sessao_id } = req.body;
-//
-//    console.log(`PUT /carrinho/${id}`, { quantidade, sessao_id }); // Debug
-//
-//    if (!sessao_id) {
-//        return res.status(400).json({ erro: "sessao_id é obrigatório" });
-//    }
-//
-//    try {
-//        // Verificar se o item pertence à sessão
-//        const checkQuery = `
-//            SELECT * FROM carrinho 
-//            WHERE id = $1 AND sessao_id = $2
-//        `;
-//        const checkResult = await db.query(checkQuery, [id, sessao_id]);
-//
-//        if (checkResult.rows.length === 0) {
-//            return res.status(404).json({ erro: "Item não encontrado nesta sessão" });
-//        }
-//
-//        // Atualizar quantidade
-//        const updateQuery = `
-//            UPDATE carrinho 
-//            SET quantidade = $1 
-//            WHERE id = $2 AND sessao_id = $3
-//            RETURNING *
-//        `;
-//        const result = await db.query(updateQuery, [quantidade, id, sessao_id]);
-//        
-//        res.json(result.rows[0]);
-//    } catch (error) {
-//        console.error("Erro no PUT /carrinho:", error);
-//        res.status(500).json({ erro: "Erro ao atualizar carrinho" });
-//    }
-//});
-//
-//app.delete('/carrinho/:id', async (req, res) => {
-//    const { id } = req.params;
-//    const { sessao_id } = req.query;
-//
-//    console.log(`DELETE /carrinho/${id}`, { sessao_id }); // Debug
-//
-//    if (!sessao_id) {
-//        return res.status(400).json({ erro: "sessao_id é obrigatório" });
-//    }
-//
-//    try {
-//        // Verificar se o item pertence à sessão
-//        const checkQuery = `
-//            SELECT * FROM carrinho 
-//            WHERE id = $1 AND sessao_id = $2
-//        `;
-//        const checkResult = await db.query(checkQuery, [id, sessao_id]);
-//
-//        if (checkResult.rows.length === 0) {
-//            return res.status(404).json({ erro: "Item não encontrado nesta sessão" });
-//        }
-//
-//        // Deletar item
-//        const deleteQuery = `
-//            DELETE FROM carrinho 
-//            WHERE id = $1 AND sessao_id = $2 
-//            RETURNING *
-//        `;
-//        const result = await db.query(deleteQuery, [id, sessao_id]);
-//        
-//        res.json({ 
-//            message: 'Item removido com sucesso',
-//            item: result.rows[0]
-//        });
-//    } catch (error) {
-//        console.error("Erro no DELETE /carrinho:", error);
-//        res.status(500).json({ erro: "Erro ao remover item" });
-//    }
-//});
+app.put('/carrinho/:id', async (req, res) => {
+    const { id } = req.params;
+    const { quantidade, sessao_id } = req.body;
+
+    console.log(`PUT /carrinho/${id}`, { quantidade, sessao_id }); // Debug
+
+    if (!sessao_id) {
+        return res.status(400).json({ erro: "sessao_id é obrigatório" });
+    }
+
+    try {
+        // Verificar se o item pertence à sessão
+        const checkQuery = `
+            SELECT * FROM carrinho 
+            WHERE id = $1 AND sessao_id = $2
+        `;
+        const checkResult = await db.query(checkQuery, [id, sessao_id]);
+
+        if (checkResult.rows.length === 0) {
+            return res.status(404).json({ erro: "Item não encontrado nesta sessão" });
+        }
+
+        // Atualizar quantidade
+        const updateQuery = `
+            UPDATE carrinho 
+            SET quantidade = $1 
+            WHERE id = $2 AND sessao_id = $3
+            RETURNING *
+        `;
+        const result = await db.query(updateQuery, [quantidade, id, sessao_id]);
+
+        res.json(result.rows[0]);
+    } catch (error) {
+        console.error("Erro no PUT /carrinho:", error);
+        res.status(500).json({ erro: "Erro ao atualizar carrinho" });
+    }
+});
+
+app.delete('/carrinho/:id', async (req, res) => {
+    const { id } = req.params;
+    const { sessao_id } = req.query;
+
+    console.log(`DELETE /carrinho/${id}`, { sessao_id }); // Debug
+
+    if (!sessao_id) {
+        return res.status(400).json({ erro: "sessao_id é obrigatório" });
+    }
+
+    try {
+        // Verificar se o item pertence à sessão
+        const checkQuery = `
+            SELECT * FROM carrinho 
+            WHERE id = $1 AND sessao_id = $2
+        `;
+        const checkResult = await db.query(checkQuery, [id, sessao_id]);
+
+        if (checkResult.rows.length === 0) {
+            return res.status(404).json({ erro: "Item não encontrado nesta sessão" });
+        }
+
+        // Deletar item
+        const deleteQuery = `
+            DELETE FROM carrinho 
+            WHERE id = $1 AND sessao_id = $2 
+            RETURNING *
+        `;
+        const result = await db.query(deleteQuery, [id, sessao_id]);
+
+        res.json({
+            message: 'Item removido com sucesso',
+            item: result.rows[0]
+        });
+    } catch (error) {
+        console.error("Erro no DELETE /carrinho:", error);
+        res.status(500).json({ erro: "Erro ao remover item" });
+    }
+});
+
+app.post("/pix", async (req, res) => {
+  const { valor } = req.body;
+
+  try {
+    const qrcode = await pixQRCode.generateStaticPixQRCode({
+      key: "mateuspix1322@gmail.com",
+      name: "CARTIRE",
+      city: "GOIANIA",
+      description: "Pagamento do pedido",
+      amount: Number(valor)
+    });
+
+    res.json({
+      payload: qrcode.qrCodeText,
+      qrCode: "data:image/png;base64," + qrcode.qrCodeImage
+    });
+
+  } catch (err) {
+    console.error("Erro gerando PIX QR:", err);
+    res.status(500).json({ erro: "Erro ao gerar PIX QR" });
+  }
+});
 
 const server = app.listen(8000, () => {
     console.log('Servidor rodando...')

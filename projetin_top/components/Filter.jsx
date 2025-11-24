@@ -113,7 +113,7 @@ const Filter = ({ setFiltro }) => {
                   setFiltro("");
                 } else {
                   setSelected(item);
-                  setFiltro(item);
+                  setFiltro({tipo: 'preco', valor: item});
                 }
               }}
             >
