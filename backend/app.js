@@ -72,6 +72,7 @@ app.get('/carrinho', async (req, res) => {
             FROM carrinho c
             JOIN produtos p ON c.produtos_id = p.id
             WHERE c.sessao_id = $1
+            ORDER BY c.id ASC
         `, [sessao_id]);
 
         res.json(result.rows);
