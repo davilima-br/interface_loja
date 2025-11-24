@@ -74,6 +74,23 @@ export default function CartPage() {
         }
     }
 
+    async function deletaProduto(itemId) {
+        try {
+            const res = await fetch(`http://localhost:8000/carrinho/${itemId}?sessao_id=${sessionId}`, {
+                method: "DELETE"
+            })
+            if (!res.ok) throw new Error("Erro ao deletar produto")
+
+            const updated = await fetch(`http://localhost:8000/carrinho?sessao_id=${sessionId}`)
+            const data = await updated.json()
+            setCarrinho(data)
+
+        } catch (err) {
+            console.error(err)
+            alert("erro ao deletar produto")
+        }
+    }
+
     return (
         <div className="w-[90%] mx-auto py-12 space-y-12 font-serif">
 
@@ -104,7 +121,7 @@ export default function CartPage() {
                             <div className="flex-1 space-y-1">
                                 <h3 className="text-2xl font-bold text-gray-800">{item.nome}</h3>
                                 <p className="text-gray-500 text-lg">${item.preco}</p>
-                            </div> 
+                            </div>
 
                             <div className="flex items-center gap-4 bg-gray-100 px-4 py-2 rounded-xl shadow-sm" >
                                 <button
@@ -126,11 +143,17 @@ export default function CartPage() {
                                 </button>
                             </div>
 
+                            <button
+                                onClick={() => deletaProduto(item.id)}
+                                className="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+                            >
+                                Delete
+                            </button>
                             <div className="text-right w-28 font-bold text-xl text-gray-800">
                                 ${(item.preco * item.quantidade).toFixed(2)}
                             </div><br />
-                        </div> 
-                    ))} 
+                        </div>
+                    ))}
 
                 </div>
 
