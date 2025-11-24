@@ -1,3 +1,3 @@
 git add .
-git commit -m "codigo pronto"
+git commit -m "filtro e shop"
 git push
