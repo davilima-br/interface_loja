@@ -1,3 +1,3 @@
 git add .
-git commit -m "arrumando o carinho"
+git commit -m "codigo pronto"
 git push

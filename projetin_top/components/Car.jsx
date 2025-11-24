@@ -85,10 +85,10 @@ export default function CartPage() {
             </div><br />
 
             {/* GRID */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 ">
 
                 {/* LEFT SIDE */}
-                <div className="col-span-2 bg-white p-10 rounded-2xl shadow-lg border border-gray-100 space-y-10">
+                <div className=" col-span-2  bg-white pb-10 rounded-2xl shadow-lg border border-gray-100 space-y-30">
 
                     {carrinho.map(item => (
                         <div
@@ -99,14 +99,14 @@ export default function CartPage() {
                                 src={item.imagem}
                                 alt={item.nome}
                                 className="w-32 sm:w-28 rounded-xl shadow-md"
-                            />
+                            /> <br />
 
                             <div className="flex-1 space-y-1">
                                 <h3 className="text-2xl font-bold text-gray-800">{item.nome}</h3>
                                 <p className="text-gray-500 text-lg">${item.preco}</p>
-                            </div>
+                            </div> 
 
-                            <div className="flex items-center gap-4 bg-gray-100 px-4 py-2 rounded-xl shadow-sm">
+                            <div className="flex items-center gap-4 bg-gray-100 px-4 py-2 rounded-xl shadow-sm" >
                                 <button
                                     className="px-4 py-2 text-xl font-bold rounded-lg hover:bg-gray-200 transition"
                                     onClick={() =>
@@ -128,38 +128,40 @@ export default function CartPage() {
 
                             <div className="text-right w-28 font-bold text-xl text-gray-800">
                                 ${(item.preco * item.quantidade).toFixed(2)}
-                            </div>
-                        </div>
-                    ))}
+                            </div><br />
+                        </div> 
+                    ))} 
 
                 </div>
 
                 {/* RIGHT SIDE — deslocado para a direita */}
-                <div className="rounded-xl shadow p-8 space-y-8 bg-white w-full lg:w-[90%] justify-self-end">
-                    <h2 className="text-2xl text-[#7A1515]">Order Summary</h2>
+                <div className="rounded-xl shadow p-8 bg-white w-full lg:w-[90%] justify-self-end flex flex-col justify-between sticky top-10 h-fit">
 
-                    <div className="flex justify-between text-lg border-b border-gray-200 pb-4 font-semibold">
-                        <span>Total:</span>
-                        <span>${total}</span>
+                    <div>
+                        <h2 className="text-2xl text-[#7A1515]">Order Summary</h2><br />
+
+                        <div className="flex justify-between text-lg border-b border-gray-200 pb-4 font-semibold mt-4">
+                            <span>Total:</span>
+                            <span>${total}</span>
+                        </div><br />
                     </div>
 
-                    <br /><br /><br />
-
-                    <div className="flex gap-4">
-                        <button 
+                    <div className="flex flex-col mt-8 items-center">
+                        <button
                             onClick={() => window.location.assign("/shop")}
-                            className="w-1/1 bg-black text-white py-3 rounded-lg hover:bg-gray-800"
+                            className="w-[100%] bg-black text-white py-3 hover:bg-gray-800"
                         >
                             Continue Shopping
                         </button>
+
+                        <button
+                            className="w-[100%] bg-red-700 text-white py-4 rounded-b-lg text-lg hover:bg-red-800"
+                            onClick={gerarPix}
+                        >
+                            Proceed to Checkout
+                        </button>
                     </div>
 
-                    <button
-                        className="w-full bg-red-700 text-white py-4 rounded-lg text-lg hover:bg-red-800"
-                        onClick={gerarPix}
-                    >
-                        Proceed to Checkout
-                    </button>
                 </div>
 
             </div>
