@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 export default function CartPage() {
-    const [carrinho, setCarrinho] = useState([])
+    const [carrinho, setCarrinho] = useState([]);
     const [sessionId, setSessionId] = useState("");
 
     useEffect(() => {
@@ -14,7 +14,6 @@ export default function CartPage() {
         }
         setSessionId(s);
     }, []);
-
 
     useEffect(() => {
         if (!sessionId) return;
@@ -33,19 +32,19 @@ export default function CartPage() {
     async function AtualizaQtd(itemId, novaQtd) {
         try {
             const res = await fetch(`http://localhost:8000/carrinho/${itemId}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'Application/json' },
-                body: JSON.stringify({ quantidade: novaQtd, sessao_id: sessionId })
-            })
-            if (!res.ok) throw new Error("Erro ao atualizar quantidade")
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ quantidade: novaQtd, sessao_id: sessionId }),
+            });
 
-            const updated = await fetch(`http://localhost:8000/carrinho?sessao_id=${sessionId}`)
-            const data = await updated.json()
-            setCarrinho(data)
+            if (!res.ok) throw new Error("Erro ao atualizar quantidade");
 
+            const updated = await fetch(`http://localhost:8000/carrinho?sessao_id=${sessionId}`);
+            const data = await updated.json();
+            setCarrinho(data);
         } catch (err) {
-            console.error(err)
-            alert("Erro ao atualizar quantidade")
+            console.error(err);
+            alert("Erro ao atualizar quantidade");
         }
     }
 
@@ -54,21 +53,21 @@ export default function CartPage() {
             const res = await fetch("http://localhost:8000/pix", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ valor: total })
+                body: JSON.stringify({ valor: total }),
             });
 
             const data = await res.json();
 
-            // Abre uma nova página só com o QR
             const novaJanela = window.open("", "_blank");
             novaJanela.document.write(`
-            <h2>Pagamento PIX</h2>
-            <p>Escaneie o QR Code para pagar</p>
-            <img src="${data.qrCode}" style="width:300px"/>
-            <p>Copia e cola:</p>
-            <textarea style="width:100%; height:100px">${data.payload}</textarea>
-        `);
-
+                <h2 style="font-family: Arial; text-align: center;">Pagamento PIX</h2>
+                <p style="text-align: center;">Escaneie o QR Code para pagar</p>
+                <div style="display:flex; justify-content:center;">
+                    <img src="${data.qrCode}" style="width:280px"/>
+                </div>
+                <p style="margin-top:15px;">Copia e cola:</p>
+                <textarea style="width:100%; height:120px">${data.payload}</textarea>
+            `);
         } catch (err) {
             console.error(err);
             alert("Erro ao gerar PIX");
@@ -76,104 +75,91 @@ export default function CartPage() {
     }
 
     return (
-        <div
-            className="w-[90%] mx-auto py-[5%] space-y-[4%]"
-            style={{ fontFamily: "Times New Roman, serif" }}
-        >
-            {/* Title */}
-            <div className="space-y-2">
-                <h1 className="text-center text-[250%] font-bold"
-                    style={{ color: "#7A1515" }}
-                >Cart</h1>
-            </div>
+        <div className="w-[90%] mx-auto py-12 space-y-12 font-serif">
 
-            {/* Grid */}
-            <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-[6%]">
+            {/* TITLE */}
+            <div className="text-center space-y-2"><br />
+                <h1 className="text-4xl font-bold text-[#7A1515] tracking-wide">
+                    Shopping Cart
+                </h1>
+            </div><br />
+
+            {/* GRID */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
                 {/* LEFT SIDE */}
-                <div className="col-span-2 w-full space-y-[4%]">
+                <div className="col-span-2 bg-white p-10 rounded-2xl shadow-lg border border-gray-100 space-y-10">
 
-                    {/* HEADER ROW */}
-                    <div className="hidden sm:grid grid-cols-3 w-full text-[95%] text-gray-600 pb-[1.5%] border-b">
-                        <span>Product</span>
-                        <span className="text-center">Quantity</span>
-                        <span className="text-right pr-[5%]">Subtotal</span>
-                    </div>
-
-                    {/* ITEM 1 */}
                     {carrinho.map(item => (
-                        <div key={item.id} className="w-full border-b py-[4%] flex flex-col sm:flex-row items-center gap-[4%]">
-
-                            {/* Image */}
+                        <div
+                            key={item.id}
+                            className="flex flex-col sm:flex-row items-center gap-8 pb-10 border-b border-gray-200"
+                        >
                             <img
-                                src={item.imagem} alt={item.nome}
-                                className="w-[35%] sm:w-[20%] rounded"
+                                src={item.imagem}
+                                alt={item.nome}
+                                className="w-32 sm:w-28 rounded-xl shadow-md"
                             />
 
-                            {/* INFO */}
-                            <div className="w-full sm:w-[60%] space-y-1">
-                                <h3 className="text-[130%] font-bold">{item.nome}</h3>
-                                <p className="text-gray-500">${item.preco}</p>
+                            <div className="flex-1 space-y-1">
+                                <h3 className="text-2xl font-bold text-gray-800">{item.nome}</h3>
+                                <p className="text-gray-500 text-lg">${item.preco}</p>
                             </div>
 
-                            {/* Quantity */}
-                            <div className="w-full sm:w-[20%] flex justify-center my-[2%]">
+                            <div className="flex items-center gap-4 bg-gray-100 px-4 py-2 rounded-xl shadow-sm">
+                                <button
+                                    className="px-4 py-2 text-xl font-bold rounded-lg hover:bg-gray-200 transition"
+                                    onClick={() =>
+                                        item.quantidade > 1 && AtualizaQtd(item.id, item.quantidade - 1)
+                                    }
+                                >
+                                    –
+                                </button>
 
-                                <div className="flex items-center gap-[20%]">
-                                    <button
-                                        className="border px-4 py-2"
-                                        onClick={() => {
-                                            if (item.quantidade > 1) {
-                                                AtualizaQtd(item.id, item.quantidade - 1)
-                                            }
-                                        }}
-                                    >-</button>
-                                    <span>{item.quantidade}</span>
-                                    <button
-                                        className="border px-4 py-2"
-                                        onClick={() => AtualizaQtd(item.id, item.quantidade + 1)}
-                                    >+</button>
-                                </div>
+                                <span className="text-xl font-semibold">{item.quantidade}</span>
 
+                                <button
+                                    className="px-4 py-2 text-xl font-bold rounded-lg hover:bg-gray-200 transition"
+                                    onClick={() => AtualizaQtd(item.id, item.quantidade + 1)}
+                                >
+                                    +
+                                </button>
                             </div>
 
-                            {/* Price */}
-                            <div className="w-full sm:w-[20%] text-right font-semibold text-[120%]">
-                                ${item.preco * item.quantidade}
+                            <div className="text-right w-28 font-bold text-xl text-gray-800">
+                                ${(item.preco * item.quantidade).toFixed(2)}
                             </div>
                         </div>
                     ))}
 
                 </div>
 
-                {/* RIGHT SIDE TOTAL */}
-                <div className="w-full border p-[7%] rounded-lg shadow-sm space-y-[8%]">
+                {/* RIGHT SIDE — deslocado para a direita */}
+                <div className="rounded-xl shadow p-8 space-y-8 bg-white w-full lg:w-[90%] justify-self-end">
+                    <h2 className="text-2xl text-[#7A1515]">Order Summary</h2>
 
-                    <h2 className="text-[140%] font-bold"
-                        style={{ color: "#7A1515" }}
-                    >Cart Total</h2>
-
-                    <div className="flex justify-between py-[3%] border-b font-bold">
-                        <span>Total</span>
+                    <div className="flex justify-between text-lg border-b border-gray-200 pb-4 font-semibold">
+                        <span>Total:</span>
                         <span>${total}</span>
                     </div>
 
-                    {/* Buttons */}
-                    <div className="flex gap-[5%] mt-[8%]">
-                        <button className="w-[50%] border py-[3.5%] hover:bg-gray-100 cursor-pointer">
-                            Update Cart
-                        </button>
-                        <button className="w-[50%] bg-black text-white py-[3.5%] hover:bg-gray-800 cursor-pointer"
-                            onClick={() => window.location.assign("/shop")}>
-                            Continue Shop
+                    <br /><br /><br />
+
+                    <div className="flex gap-4">
+                        <button 
+                            onClick={() => window.location.assign("/shop")}
+                            className="w-1/1 bg-black text-white py-3 rounded-lg hover:bg-gray-800"
+                        >
+                            Continue Shopping
                         </button>
                     </div>
 
-                    <button className="w-full bg-red-700 text-white py-[4.5%] hover:bg-red-800 cursor-pointer"
-                        onClick={gerarPix}>
-                        Proceed to checkout
+                    <button
+                        className="w-full bg-red-700 text-white py-4 rounded-lg text-lg hover:bg-red-800"
+                        onClick={gerarPix}
+                    >
+                        Proceed to Checkout
                     </button>
-
                 </div>
 
             </div>

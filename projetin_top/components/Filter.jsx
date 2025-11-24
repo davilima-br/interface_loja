@@ -10,16 +10,15 @@ const Filter = ({ setFiltro }) => {
     "w-4 h-4 border-2 rounded-sm mr-2 flex items-center justify-center transition-all duration-300";
 
   return (
-    <aside className="w-full max-w-xs h-[100%] space-y-2 text-gray-900 bg-[#e2e2e2] font-times">
+    <aside className="w-full max-w-xs h-[100%] space-y-10 px-3 text-gray-900 bg-[#e2e2e2] font-times">
 
       {/* Categories */}
-      <div className="transition-transform duration-200 hover:translate-x-1">
-        <br /><br />
-        <h3 className="font-bold mb-2 text-lg bg-[#9b1b1b] text-white w-[90%] p-2 rounded">
+      <div className="transition-transform duration-200 hover:translate-x-1"><br /><br />
+        <h3 className="font-normal text-center mx-auto mb-4 text-lg bg-[#9b1b1b] text-white w-[90%] p-4 rounded">
           Categories
         </h3>
 
-        <ul className="space-y-2">
+        <ul className="space-y-4">
           {["Casual", "Formal"].map(item => (
             <li
               key={item}
@@ -44,7 +43,7 @@ const Filter = ({ setFiltro }) => {
                 {selected === item && <Check className="text-white text-sm" />}
               </span>
 
-              <span className="font-bold">{item}</span>
+              <span className="font-normal">{item}</span>
             </li>
           ))}
         </ul>
@@ -52,51 +51,48 @@ const Filter = ({ setFiltro }) => {
 
       {/* Tags */}
       <div className="transition-transform duration-200 hover:translate-x-1">
-        <br />
-        <h3 className="font-bold mb-2 text-lg bg-[#9b1b1b] text-white w-[90%] p-2 rounded">
+        <h3 className="font-normal text-center mx-auto mb-4 text-lg bg-[#9b1b1b] text-white w-[90%] p-4 rounded">
           Tags
         </h3>
 
-        <ul className="space-y-2">
-  {["Verde", "Preto", "Azul", "Azul Claro", "Branco", "Marfim"].map(item => (
-    <li
-      key={item}
-      className="cursor-pointer flex items-center"
-      onClick={() => {
-        if (selected === item) {
-          setSelected("");
-          setFiltro("");
-        } else {
-          setSelected(item);
-          setFiltro(item); // <-- envia a cor correta para o filtro
-        }
-      }}
-    >
-      <span
-        className={`${boxBase} ${
-          selected === item
-            ? "bg-[#9b1b1b] border-[#9b1b1b]"
-            : "bg-transparent border-black"
-        } hover:border-[#9b1b1b]`}
-      >
-        {selected === item && <Check className="text-white text-sm" />}
-      </span>
+        <ul className="space-y-4">
+          {["Verde", "Preto", "Azul", "Azul Claro", "Branco", "Marfim"].map(item => (
+            <li
+              key={item}
+              className="cursor-pointer flex items-center"
+              onClick={() => {
+                if (selected === item) {
+                  setSelected("");
+                  setFiltro("");
+                } else {
+                  setSelected(item);
+                  setFiltro(item);
+                }
+              }}
+            >
+              <span
+                className={`${boxBase} ${
+                  selected === item
+                    ? "bg-[#9b1b1b] border-[#9b1b1b]"
+                    : "bg-transparent border-black"
+                } hover:border-[#9b1b1b]`}
+              >
+                {selected === item && <Check className="text-white text-sm" />}
+              </span>
 
-      <span className="font-bold">{item}</span>
-    </li>
-  ))}
-</ul>
-
+              <span className="font-normal">{item}</span>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      {/* Filter by Price */}
+      {/* Filter By Price */}
       <div className="transition-transform duration-200 hover:translate-x-1">
-        <br />
-        <h3 className="font-bold mb-2 text-lg bg-[#9b1b1b] text-white w-[90%] p-2 rounded">
+        <h3 className="font-normal text-center mx-auto mb-4 text-lg bg-[#9b1b1b] text-white w-[90%] p-4 rounded">
           Filter By Price
         </h3>
 
-        <ul className="space-y-2">
+        <ul className="space-y-6">
           {[
             "Up to $5,000",
             "$5,000 - $10,000",
@@ -113,7 +109,7 @@ const Filter = ({ setFiltro }) => {
                   setFiltro("");
                 } else {
                   setSelected(item);
-                  setFiltro({tipo: 'preco', valor: item});
+                  setFiltro({ tipo: 'preco', valor: item });
                 }
               }}
             >
@@ -127,7 +123,7 @@ const Filter = ({ setFiltro }) => {
                 {selected === item && <Check className="text-white text-sm" />}
               </span>
 
-              <span className="font-bold">{item}</span>
+              <span className="font-normal">{item}</span>
             </li>
           ))}
         </ul>
