@@ -13,7 +13,7 @@ No seu computador, abra o terminal integrado do VSCode. Para isso, siga esses pa
 2. Pressione `ctrl + shift + " ` para abrir o terminal
 
 
-### **1.2. Definindo a Política de Execução no PowerShell (Windows)**
+### **1.2. Definindo a Política de Execução nos computadores institucionais**
 
 Antes de executar qualquer script no VSCode, você precisa garantir que o VSCode permita scripts não assinados (como o `start.bat` e `run.bat`) sendo executados. Execute o seguinte comando no VSCode:
 
@@ -44,9 +44,10 @@ Ainda no mesmo terminal rode o seguinte comando para abrir a pasta do projeto:
 cd interface_loja
 ```
 
-### **2.2. Executando o Script `start.bat`**
+### **2.2. Executando o Projeto**
 
-Para iniciar o projeto, execute o script `start.bat` diretamente do terminal do VSCode.
+#### **No Windows**
+Para iniciar o projeto no windows, execute o script `start.bat` diretamente do terminal do VSCode.
 
 ```
 ./start.bat
@@ -57,7 +58,15 @@ O script **`start.bat`** vai iniciar:
 * O **backend** (com Node.js).
 * O **frontend** (com o Next.js).
 * E também o **banco de dados**, rodando os comandos para garantir que a estrutura do banco de dados esteja pronta.
+#### **No linux**
+Para iniciar o projeto no linux, execute o script `linux.sh` no terminal do VSCode.
 
+```
+./linux.sh
+```
+**Observações:** 
+1. Dependendo do terminal que você usar é possível que aconteça erros, pois os comandos estão sendo executados em **bash**.
+2. Esse script roda os mesmos comandos que o `start.bat`, assim sendo apenas uma tradução do mesmo.
 ### **2.3. O que o Script `start.bat` faz:**
 
 * **Inicia o Banco de Dados:** Roda o script `DBinit.bat`, que cria e configura o banco de dados PostgreSQL.

@@ -18,6 +18,7 @@ export default function ProdutoPage(props: any) {
 
   const [produto, setProduto] = useState<any>(null);
   const [sessionId, setSessionId] = useState("");
+  const [quantity, setQuantity] = useState(1);
 
   // Criar sessao_id
   useEffect(() => {
@@ -33,7 +34,7 @@ export default function ProdutoPage(props: any) {
     async function load() {
       {/* carrega o produto */ }
       try {
-        const res = await fetch(`http://localhost:8000/produtos/${id}`); 
+        const res = await fetch(`http://localhost:8000/produtos/${id}`);
         const data = await res.json();
         setProduto(data);
       } catch (error) {
@@ -45,14 +46,14 @@ export default function ProdutoPage(props: any) {
 
   if (!produto) return <h1>Carregando...</h1>;
 
-  async function addToCart() {
+  async function adicionaCarrinho() {
     try {
       const res = await fetch("http://localhost:8000/carrinho", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           produtos_id: produto.id,
-          quantidade: 1,
+          quantidade: quantity,
           sessao_id: sessionId
         })
       });
@@ -120,17 +121,14 @@ export default function ProdutoPage(props: any) {
           {produto.nome}
         </h1>
 
-        <p
-          className="text-gray-700 leading-relaxed"
-          style={{ fontSize: "1.2vw" }}
-        >
-          {produto.descricao}
-        </p>
 
         {/* PREÇO */}
+        <div className="mt-2 flex items-center">
+          <span className="text-yellow-400 text-xl">★★★★★</span>
+          <span className="text-gray-500 text-sm ml-2">(120 reviews)</span>
+        </div>
         <div className="space-y-2">
-          <p
-            className="font-bold"
+          <p className="font-bold"
             style={{
               fontSize: "2.5vw",
               color: "#7A1515",
@@ -142,7 +140,40 @@ export default function ProdutoPage(props: any) {
             IVA incl.
           </p>
         </div>
-        /
+
+        {/* QUANTIDADE */}
+        <div className="mt-6 flex items-center gap-3">
+            <label className="font-medium text-gray-800 text-xl">Quantidade:  </label>
+          <input
+            type="number"
+            min="1"
+            value={quantity}
+            onChange={(e) => {
+              const value = Number(e.target.value);
+              if (value < 1 || isNaN(value)) {
+                setQuantity(1);
+                return;
+              }
+
+              setQuantity(value);
+            }}
+              className="w-20 px-4 py-2 border border-gray-300 rounded-xl bg-gray-50 text-gray-800 font-semibold shadow-sm focus:border-[#7A1515] focus:ring-2 focus:ring-[#7A1515] outline-none transition-all"
+          />
+        </div>
+
+        <button className="botao-carrinho flex" onClick={adicionaCarrinho}>
+          <ShoppingCart size={28} />
+          Adicionar ao Carrinho
+        </button>
+        <p
+          className="text-gray-700 leading-relaxed"
+          style={{ fontSize: "1.2vw" }}
+        >
+          {produto.descricao}
+        </p> <br />
+        {/* 🛒 BOTÃO ADICIONAR AO CARRINHO */}
+
+
         {/* ÍCONES INFORMATIVOS */}
         <div
           className="text-gray-800 mt-4"
@@ -172,13 +203,6 @@ export default function ProdutoPage(props: any) {
             <CalendarDays size={26} color="#7A1515" />
             Agendar uma visita
           </p>
-
-          {/* 🛒 BOTÃO ADICIONAR AO CARRINHO */}
-          <button className="botao-carrinho flex items-center gap-2" onClick={addToCart}>
-            <ShoppingCart size={28} />
-            Adicionar ao Carrinho
-          </button>
-
         </div>
       </div>
     </div>

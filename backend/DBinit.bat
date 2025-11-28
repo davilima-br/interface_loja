@@ -19,6 +19,7 @@ if %errorlevel% neq 0 (
     "C:\Program Files\PostgreSQL\15\bin\psql.exe" -h %PGHOST% -p %PGPORT% -U %PGUSER% -d %PGDATABASE% -c "CREATE DATABASE DB_loja;"
 ) else (
     echo O banco de dados DB_loja já existe.
+    pause
 )
 
 REM Comando para rodar o script SQL no banco DB_loja

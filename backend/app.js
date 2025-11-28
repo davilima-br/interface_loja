@@ -9,12 +9,14 @@ app.use(express.json())
 app.use(cors())
 
 
-app.get('/produtos', (req, res) => {
-    db.query('SELECT * FROM produtos')
-        .then((e) => res.status(200).json(e.rows))
-        .catch((err) => res.status(500).json({ erro: err.stack }))
-}
-)
+app.get('/produtos', async (req, res) => {
+    try {
+        const result = await db.query('SELECT * FROM produtos');
+        res.status(200).json(result.rows);
+    } catch (err) {
+        res.status(500).json({ erro: 'Erro ao buscar produtos', details: err.stack });
+    }
+});
 
 app.get('/produtos/:id', (req, res) => {
     const { id } = req.params
